@@ -1,0 +1,89 @@
+{
+	"name": "zyl",
+	"displayName": "居老师鼓励师",
+	"description": "居老师鼓励师~与你同在",
+	"version": "0.0.1",
+	"publisher": "yanzilulu",
+	"icon": "logo.jpg",
+	"engines": {
+		"vscode": "^1.33.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"朱一龙",
+		"居老师",
+		"居一龙",
+		"鼓励师"
+	],
+	"bugs": {
+        "url": "https://github.com/yanzilulu/vscode-zyl/issues",
+        "email": "793617505@qq.com"
+    },
+    "homepage": "https://github.com/yanzilulu/vscode-zyl/blob/master/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yanzilulu/vscode-zyl.git"
+    },
+	"activationEvents": [
+		"onCommand:zyl.showReminderView"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "zyl.showReminderView",
+				"title": "打开提醒页面",
+				"category": "zyl"
+			}
+		],
+		"configuration": {
+            "type": "object",
+            "title": "朱一龙",
+            "properties": {
+                "zyl.reminderViewIntervalInMinutes": {
+                    "type": "number",
+                    "default": 60,
+                    "description": "展示提醒页面的时间间隔（分钟）"
+                },
+                "zyl.title": {
+                    "type": "string",
+                    "default": "代码写久了，喝杯水休息一下~",
+                    "description": "页面内展示文字标题"
+				},
+				"zyl.content": {
+                    "type": "string",
+                    "default": "今天也是和居老师一起努力工作的一天呢~",
+                    "description": "页面内展示文字内容"
+                },
+                "zyl.type": {
+                    "type": "string",
+                    "default": "default",
+                    "description": "类型：default:默认图；url：网络图"
+                },
+                "zyl.customImages": {
+                    "type": "array",
+                    "default": [
+                        "http://b-ssl.duitang.com/uploads/item/201806/04/20180604090459_gqqjo.jpg"
+                    ],
+                    "description": "用户设置图片地址"
+                }
+            }
+        }
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	}
+}
