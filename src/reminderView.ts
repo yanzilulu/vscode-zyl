@@ -25,6 +25,7 @@ export class ReminderView {
                 this.panel = undefined;
             });
         }
+        console.log(title);
     }
 
     protected static generateHtml(imagePath: vscode.Uri|string, title: string, content: string): string {
