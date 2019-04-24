@@ -10,9 +10,13 @@ export function activate(context: vscode.ExtensionContext) {
 	const scheduler = new Scheduler(context);
     scheduler.start();
 
-    context.subscriptions.push(vscode.commands.registerCommand('zyl.showReminderView', () => {
+	let disposable = vscode.commands.registerCommand('zyl.showReminderView', () => {
         ReminderView.show(context);
-    }));
+	});
+	
+	context.subscriptions.push(disposable);
+	context.subscriptions.push(scheduler.watch());
+
 	/* console.log('Congratulations, your extension "zyl" is now active!');
 
 	let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {

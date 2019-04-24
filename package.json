@@ -2,7 +2,7 @@
 	"name": "zyl",
 	"displayName": "居老师鼓励师",
 	"description": "居老师鼓励师~与你同在",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "yanzilulu",
 	"icon": "logo.jpg",
 	"engines": {
@@ -27,7 +27,8 @@
         "url": "https://github.com/yanzilulu/vscode-zyl.git"
     },
 	"activationEvents": [
-		"onCommand:zyl.showReminderView"
+		"onCommand:zyl.showReminderView",
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
