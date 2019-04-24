@@ -65,7 +65,7 @@
                 "zyl.customImages": {
                     "type": "array",
                     "default": [
-                        "http://b-ssl.duitang.com/uploads/item/201806/04/20180604090459_gqqjo.jpg"
+                        "http://zyl.jpg"
                     ],
                     "description": "用户设置图片地址"
                 }
