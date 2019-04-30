@@ -2,7 +2,7 @@
 	"name": "zyl",
 	"displayName": "居老师鼓励师",
 	"description": "居老师鼓励师~与你同在",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"publisher": "yanzilulu",
 	"icon": "logo.jpg",
 	"engines": {
@@ -35,40 +35,58 @@
 		"commands": [
 			{
 				"command": "zyl.showReminderView",
-				"title": "打开提醒页面",
+				"title": "召唤居老师~",
 				"category": "zyl"
 			}
 		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "zyl.showReminderView",
+					"group": "navigation"
+				}
+			]
+		},
 		"configuration": {
             "type": "object",
             "title": "朱一龙",
             "properties": {
-                "zyl.reminderViewIntervalInMinutes": {
+				"zyl.remind.enabled": {
+					"type": "boolean",
+					"default": true,
+					"description": "是否启用定时提醒休息"
+				},
+                "zyl.remind.reminderViewIntervalInMinutes": {
                     "type": "number",
-                    "default": 60,
+                    "default": 120,
                     "description": "展示提醒页面的时间间隔（分钟）"
                 },
-                "zyl.title": {
+                "zyl.remind.title": {
                     "type": "string",
                     "default": "代码写久了，喝杯水休息一下~",
                     "description": "页面内展示文字标题"
 				},
-				"zyl.content": {
+				"zyl.remind.content": {
                     "type": "string",
                     "default": "今天也是和居老师一起努力工作的一天呢~",
                     "description": "页面内展示文字内容"
                 },
-                "zyl.type": {
+                "zyl.remind.type": {
                     "type": "string",
                     "default": "default",
                     "description": "类型：default:默认图；url：网络图"
                 },
-                "zyl.customImages": {
+                "zyl.remind.customImages": {
                     "type": "array",
                     "default": [
                         "http://zyl.jpg"
                     ],
                     "description": "用户设置图片地址"
+				},
+				"background.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Plugin background enabled.background 插件是否启用"
                 }
             }
         }

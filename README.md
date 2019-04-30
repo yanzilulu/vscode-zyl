@@ -10,7 +10,7 @@
 
 ## 配置
 
-* `zyl.reminderViewIntervalInMinutes`: 展示提醒页面的时间间隔（分钟）。(默认值为**60**)
+* `zyl.reminderViewIntervalInMinutes`: 展示提醒页面的时间间隔（分钟）。(默认值为**120**)
 * `zyl.title`: 提示文字。 (默认值为**代码写久了，喝杯水休息一下~**)
 * `zyl.content`: 提示内容，支持html标签。 (默认值为**今天也是和居老师一起努力工作的一天呢~**)
 * `zyl.type`: default (默认图)；url (图片地址)。(默认值为**default**)
