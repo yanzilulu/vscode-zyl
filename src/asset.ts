@@ -39,6 +39,14 @@ export default class Asset {
         return files;
     }
 
+    // 获取默认背景图
+    protected getDefaultBackgroundImage(): vscode.Uri[] {
+        const dirPath = path.join(this.context.extensionPath, 'images/zyl/zyl3.jpg');
+        const file = this.readPathImage(dirPath);
+        console.log(file);
+        return file;
+    }
+
     protected readPathImage(dirPath: string): vscode.Uri[] {
         let files: vscode.Uri[] = [];
         const result = fs.readdirSync(dirPath);

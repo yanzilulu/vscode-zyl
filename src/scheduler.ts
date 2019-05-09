@@ -1,7 +1,7 @@
 'use strict';
 import * as vscode from "vscode";
-import { ReminderView } from './reminderView';
-import vsHelp from './vsHelp';
+import { ReminderView } from './reminder/reminderView';
+import vsHelp from './tool/vsHelp';
 import { Utility } from './utility';
 
 export class Scheduler {
@@ -13,7 +13,7 @@ export class Scheduler {
     public start() {
         setInterval(() => {
             ReminderView.show(this.context);
-        }, 1000 * 60 * Utility.getConfiguration().get<number>('reminderViewIntervalInMinutes', 60));
+        }, 1000 * 60 * Utility.getConfiguration().get<number>('reminderViewIntervalInMinutes', 120));
     }
     
     // 监听zyl属性是否修改

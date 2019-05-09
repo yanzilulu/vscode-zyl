@@ -1,6 +1,6 @@
 'use strict';
 import * as vscode from 'vscode';
-import Asset from './asset';
+import Asset from '../asset';
 
 export class ReminderView {
     private static panel: vscode.WebviewPanel | undefined;

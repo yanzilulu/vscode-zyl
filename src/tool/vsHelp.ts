@@ -7,9 +7,9 @@ const vsHelp = {
      * @param {string} content 提示内容
      * @returns {Thenable<string>} 
      */
-    /* showInfo(content: string): Thenable<string> {
+    showInfo(content: string): Thenable<string> {
         return vscode.window.showInformationMessage(content);
-    }, */
+    },
 
     /**
      * 提示信息并重启

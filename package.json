@@ -27,7 +27,8 @@
         "url": "https://github.com/yanzilulu/vscode-zyl.git"
     },
 	"activationEvents": [
-		"onCommand:zyl.showReminderView",
+        "onCommand:zyl.showReminderView",
+        "onCommand:zyl.showBackground",
 		"*"
 	],
 	"main": "./out/extension.js",
@@ -37,7 +38,7 @@
 				"command": "zyl.showReminderView",
 				"title": "召唤居老师~",
 				"category": "zyl"
-			}
+            }
 		],
 		"menus": {
 			"editor/context": [
@@ -51,42 +52,85 @@
             "type": "object",
             "title": "朱一龙",
             "properties": {
-				"zyl.remind.enabled": {
-					"type": "boolean",
-					"default": true,
-					"description": "是否启用定时提醒休息"
-				},
-                "zyl.remind.reminderViewIntervalInMinutes": {
-                    "type": "number",
-                    "default": 120,
-                    "description": "展示提醒页面的时间间隔（分钟）"
+                "zyl.reminder": {
+                    "enabled": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "是否启用定时提醒休息，不启用可手动召唤"
+                    },
+                    "reminderViewIntervalInMinutes": {
+                        "type": "number",
+                        "default": 120,
+                        "description": "展示提醒页面的时间间隔（分钟），默认2小时"
+                    },
+                    "title": {
+                        "type": "string",
+                        "default": "代码写久了，站起来休息一下，扭扭脖子~",
+                        "description": "页面内展示文字标题"
+                    },
+                    "content": {
+                        "type": "string",
+                        "default": "今天也是和居老师一起努力工作的一天呢~",
+                        "description": "页面内展示文字内容"
+                    },
+                    "type": {
+                        "type": "string",
+                        "default": "default",
+                        "description": "类型：default:默认图；url：网络图"
+                    },
+                    "customImages": {
+                        "type": "array",
+                        "default": [
+                            "http://zyl.jpg"
+                        ],
+                        "description": "用户设置图片地址（本地图片or网络图片）"
+                    }
                 },
-                "zyl.remind.title": {
-                    "type": "string",
-                    "default": "代码写久了，喝杯水休息一下~",
-                    "description": "页面内展示文字标题"
-				},
-				"zyl.remind.content": {
-                    "type": "string",
-                    "default": "今天也是和居老师一起努力工作的一天呢~",
-                    "description": "页面内展示文字内容"
-                },
-                "zyl.remind.type": {
-                    "type": "string",
-                    "default": "default",
-                    "description": "类型：default:默认图；url：网络图"
-                },
-                "zyl.remind.customImages": {
-                    "type": "array",
-                    "default": [
-                        "http://zyl.jpg"
-                    ],
-                    "description": "用户设置图片地址"
-				},
-				"background.enabled": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Plugin background enabled.background 插件是否启用"
+                "zyl.background": {
+                    "enabled": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "是否启用背景功能"
+                    },
+                    "useFront": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "是否使用前景图，这样会使图片放在代码的顶部"
+                    },
+                    "style": {
+                        "type": "object",
+                        "default": {
+                            "content": "''",
+                            "pointer-events": "none",
+                            "position": "absolute",
+                            "z-index": "99999",
+                            "width": "100%",
+                            "height": "100%",
+                            "background-position": "100% 100%",
+                            "background-repeat": "no-repeat",
+                            "opacity": 1
+                        },
+                        "description": "自定义各项公有样式."
+                    },
+                    "styles": {
+                        "type": "array",
+                        "default": [
+                            {},
+                            {},
+                            {}
+                        ],
+                        "description": "每一个背景图的独有样式。"
+                    },
+                    "useDefault": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "使用默认图片"
+                    },
+                    "customImages": {
+                        "type": "array",
+                        "default": [],
+                        "description": "自己定制背景图，最多3个"
+                    }
                 }
             }
         }
