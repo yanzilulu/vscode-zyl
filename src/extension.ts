@@ -2,6 +2,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { Utility } from './utility';
 import { ReminderView } from './reminder/reminderView';
 import { Scheduler } from './scheduler';
 import Background from './background/background';
@@ -21,10 +22,13 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage('show background!');
 	}); */
 	
-	context.subscriptions.push(disposable);
-	context.subscriptions.push(Background.watch());
-	context.subscriptions.push(scheduler.watch());
+	if(Utility.getReminderConfiguration().get<boolean>('enabled', true)){
+		context.subscriptions.push(disposable);
+		context.subscriptions.push(scheduler.watch());
+	}
 
+	context.subscriptions.push(Background.watch());
 }
+
 
 export function deactivate() {}

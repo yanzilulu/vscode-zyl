@@ -7,6 +7,7 @@ import vsHelp from '../tool/vsHelp';
 import vscodePath from '../tool/vscodePath';
 import version from './version';
 import getCss from './getCss';
+import { Utility } from '../utility';
 
 /**
  * 文件类型
@@ -46,6 +47,8 @@ class Background {
      * @memberof Background
      */
     private config: any = vscode.workspace.getConfiguration('zyl.background');
+
+
 
     //#endregion
 
@@ -157,7 +160,6 @@ class Background {
 
         let lastConfig = this.config;  // 之前的配置
         let config = vscode.workspace.getConfiguration('zyl.background'); // 当前用户配置
-        console.log(config);
 
         // 1.如果配置文件改变到时候，当前插件配置没有改变，则返回
         if (!refresh && JSON.stringify(lastConfig) === JSON.stringify(config)) {
@@ -166,9 +168,8 @@ class Background {
         }
 
         // 之后操作有两种：1.初次加载  2.配置文件改变 
-
         // 2.两次配置均为，未启动插件
-        if (!lastConfig.enabled && !config.enabled) {
+        if (!lastConfig.enabled && !this.getConfigEnabled()) {
             // console.log('两次配置均为，未启动插件');
             return;
         }
@@ -177,21 +178,21 @@ class Background {
         this.config = config; // 更新配置
 
         // 4.如果关闭插件
-        if (!config.enabled) {
+        if (!this.getConfigEnabled()) {
             this.uninstall();
             vsHelp.showInfoRestart('Background has been uninstalled! Please restart.');
             return;
         }
 
         // 5.hack 样式
-        let arr = []; // 默认图片
-
-        if (!config.useDefault) { // 自定义图片
-            arr = config.customImages;
+        let image = '';
+        
+        if (!this.getConfigUseDefault()) { // 自定义图片
+            image = this.getCustomImage();
         }
 
         // 自定义的样式内容
-        let content = getCss(arr, config.style, config.styles, config.useFront).replace(/\s*$/, ''); // 去除末尾空白
+        let content = getCss(image, this.getStyle(), this.getUseFront()).replace(/\s*$/, ''); // 去除末尾空白
 
         // 添加到原有样式(尝试删除旧样式)中
         let cssContent = this.getCssContent();
@@ -249,7 +250,36 @@ class Background {
         return vscode.workspace.onDidChangeConfiguration(() => this.install());
     }
 
-    //#endregion
+    protected getConfigEnabled(): boolean {
+        return Utility.getBackgroundConfiguration().get<boolean>('enabled', true);
+    }
+
+    protected getConfigUseDefault(): boolean {
+        return Utility.getBackgroundConfiguration().get<boolean>('useDefault', true);
+    }
+
+    protected getCustomImage() {
+        return Utility.getBackgroundConfiguration().get<string>('customImage', '');
+    }
+
+    protected getStyle() {
+        return Utility.getBackgroundConfiguration().get<object>('style', {
+            "content":"''",
+            "pointer-events":"none",
+            "position":"absolute",
+            "width":"100%",
+            "height":"100%",
+            "z-index":"99999",
+            "background-repeat":"no-repeat",
+            "opacity":0.1,
+            "background-size": "100% auto"
+        });
+    }
+
+    protected getUseFront() {
+        return Utility.getBackgroundConfiguration().get<boolean>('useFront', true);
+    }
+    
 }
 
 export default new Background();

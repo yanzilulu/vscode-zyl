@@ -4,20 +4,18 @@ import * as fs from 'fs';
 import { Utility } from './utility';
 
 export default class Asset {
-    public readonly TYPE_URL_IMAGE = 'url';
-    public readonly TYPE_DEFAULT = 'default';
 
     public constructor(private context: vscode.ExtensionContext) {
     }
 
     public getImageUri(): vscode.Uri | string {
-        const type: string = this.getConfigType();
+        const useDefault: boolean = this.getConfigUseDefault();
         let images: vscode.Uri[] | string[];
 
-        if (type === this.TYPE_URL_IMAGE) {
-            images = this.getCustomImages();
-        } else {
+        if (useDefault) {
             images = this.getDefaultImages();
+        } else {
+            images = this.getCustomImages();
         }
         // user forget setting customImages, get default images
         if (images.length === 0) {
@@ -64,19 +62,19 @@ export default class Asset {
     }
 
 
-    protected getConfigType(): string {
-        return Utility.getConfiguration().get<string>('type', 'default');
+    protected getConfigUseDefault(): boolean {
+        return Utility.getReminderConfiguration().get<boolean>('useDefault', true);
     }
 
     protected getCustomImages() {
-        return Utility.getConfiguration().get<string[]>('customImages', []);
+        return Utility.getReminderConfiguration().get<string[]>('customImages', []);
     }
 
     public getTitle(): string {
-        return Utility.getConfiguration().get<string>('title', '');
+        return Utility.getReminderConfiguration().get<string>('title', '代码写久了，站起来休息一下，扭扭脖子~');
     }
 
     public getContent(): string {
-        return Utility.getConfiguration().get<string>('content', '');
+        return Utility.getReminderConfiguration().get<string>('content', '今天也是和居老师一起努力工作的一天呢~');
     }
 }

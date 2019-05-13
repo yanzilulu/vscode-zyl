@@ -13,7 +13,7 @@ export class Scheduler {
     public start() {
         setInterval(() => {
             ReminderView.show(this.context);
-        }, 1000 * 60 * Utility.getConfiguration().get<number>('reminderViewIntervalInMinutes', 120));
+        }, 1000 * 60 * Utility.getReminderConfiguration().get<number>('reminderViewIntervalInMinutes', 120));
     }
     
     // 监听zyl属性是否修改

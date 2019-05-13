@@ -14,7 +14,6 @@
 	"keywords": [
 		"朱一龙",
 		"居老师",
-		"居一龙",
 		"鼓励师"
 	],
 	"bugs": {
@@ -73,17 +72,17 @@
                         "default": "今天也是和居老师一起努力工作的一天呢~",
                         "description": "页面内展示文字内容"
                     },
-                    "type": {
-                        "type": "string",
-                        "default": "default",
-                        "description": "类型：default:默认图；url：网络图"
+                    "useDefault": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "使用默认图片"
                     },
                     "customImages": {
                         "type": "array",
                         "default": [
                             "http://zyl.jpg"
                         ],
-                        "description": "用户设置图片地址（本地图片or网络图片）"
+                        "description": "用户设置图片地址（仅支持网络图片http://xxx.jpg）"
                     }
                 },
                 "zyl.background": {
@@ -110,26 +109,17 @@
                             "background-repeat": "no-repeat",
                             "opacity": 1
                         },
-                        "description": "自定义各项公有样式."
-                    },
-                    "styles": {
-                        "type": "array",
-                        "default": [
-                            {},
-                            {},
-                            {}
-                        ],
-                        "description": "每一个背景图的独有样式。"
+                        "description": "自定义背景图样式."
                     },
                     "useDefault": {
                         "type": "boolean",
                         "default": true,
                         "description": "使用默认图片"
                     },
-                    "customImages": {
-                        "type": "array",
-                        "default": [],
-                        "description": "自己定制背景图，最多3个"
+                    "customImage": {
+                        "type": "string",
+                        "default": "http://zyl.jpg",
+                        "description": "使用自己定制的背景图"
                     }
                 }
             }
