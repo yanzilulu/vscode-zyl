@@ -251,19 +251,19 @@ class Background {
     }
 
     protected getConfigEnabled(): boolean {
-        return Utility.getBackgroundConfiguration().get<boolean>('enabled', true);
+        return Utility.getBackgroundConfiguration().get<boolean>('enabled') || true;
     }
 
     protected getConfigUseDefault(): boolean {
-        return Utility.getBackgroundConfiguration().get<boolean>('useDefault', true);
+        return Utility.getBackgroundConfiguration().get<boolean>('useDefault') || true;
     }
 
     protected getCustomImage() {
-        return Utility.getBackgroundConfiguration().get<string>('customImage', '');
+        return Utility.getBackgroundConfiguration().get<string>('customImage') || '';
     }
 
     protected getStyle() {
-        return Utility.getBackgroundConfiguration().get<object>('style', {
+        return Utility.getBackgroundConfiguration().get<object>('style') || {
             "content":"''",
             "pointer-events":"none",
             "position":"absolute",
@@ -273,11 +273,11 @@ class Background {
             "background-repeat":"no-repeat",
             "opacity":0.1,
             "background-size": "100% auto"
-        });
+        };
     }
 
     protected getUseFront() {
-        return Utility.getBackgroundConfiguration().get<boolean>('useFront', true);
+        return Utility.getBackgroundConfiguration().get<boolean>('useFront') || true;
     }
     
 }

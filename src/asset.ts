@@ -41,7 +41,7 @@ export default class Asset {
     protected getDefaultBackgroundImage(): vscode.Uri[] {
         const dirPath = path.join(this.context.extensionPath, 'images/zyl/zyl3.jpg');
         const file = this.readPathImage(dirPath);
-        console.log(file);
+        // console.log(file);
         return file;
     }
 
@@ -63,18 +63,18 @@ export default class Asset {
 
 
     protected getConfigUseDefault(): boolean {
-        return Utility.getReminderConfiguration().get<boolean>('useDefault', true);
+        return Utility.getReminderConfiguration().get<boolean>('useDefault') || true;
     }
 
     protected getCustomImages() {
-        return Utility.getReminderConfiguration().get<string[]>('customImages', []);
+        return Utility.getReminderConfiguration().get<string[]>('customImages') || [];
     }
 
     public getTitle(): string {
-        return Utility.getReminderConfiguration().get<string>('title', '代码写久了，站起来休息一下，扭扭脖子~');
+        return Utility.getReminderConfiguration().get<string>('title') || '代码写久了，站起来休息一下，扭扭脖子~';
     }
 
     public getContent(): string {
-        return Utility.getReminderConfiguration().get<string>('content', '今天也是和居老师一起努力工作的一天呢~');
+        return Utility.getReminderConfiguration().get<string>('content') || '今天也是和居老师一起努力工作的一天呢~';
     }
 }

@@ -2,7 +2,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { Utility } from './utility';
 import { ReminderView } from './reminder/reminderView';
 import { Scheduler } from './scheduler';
 import Background from './background/background';
@@ -12,7 +11,7 @@ import Background from './background/background';
 export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "zyl" is now active!');
 	const scheduler = new Scheduler(context);
-    scheduler.start();
+	scheduler.start();
 
 	let disposable = vscode.commands.registerCommand('zyl.showReminderView', () => {
         ReminderView.show(context);
@@ -22,10 +21,8 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage('show background!');
 	}); */
 	
-	if(Utility.getReminderConfiguration().get<boolean>('enabled', true)){
-		context.subscriptions.push(disposable);
-		context.subscriptions.push(scheduler.watch());
-	}
+	context.subscriptions.push(disposable);
+	context.subscriptions.push(scheduler.watch());
 
 	context.subscriptions.push(Background.watch());
 }

@@ -8,9 +8,9 @@ export class ReminderView {
     public static show(context: vscode.ExtensionContext, ) {
         let asset: Asset = new Asset(context);
 
-        const imagePath = asset.getImageUri();
         const title = asset.getTitle();
         const content = asset.getContent();
+        const imagePath = asset.getImageUri();
 
         if (this.panel) {
             this.panel.webview.html = this.generateHtml(imagePath, title, content);
